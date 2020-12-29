@@ -25,7 +25,7 @@ class NotesDaoImp : NotesDao {
     }
 
     override fun findNotesById (id: Long): NotesEntity? {
-
+        notesEntityBox = ObjectBox.boxStore.boxFor(NotesEntity::class.java)
         val notesEntities: List<NotesEntity> = notesEntityBox.query().equal(NotesEntity_.id, id).build().find()
         notesEntities.whatIfNotNull (whatIf = { return notesEntities[0] })
         return null
@@ -33,6 +33,7 @@ class NotesDaoImp : NotesDao {
     }
 
     override fun findAllNotes() : List<NotesEntity>? {
+        notesEntityBox = ObjectBox.boxStore.boxFor(NotesEntity::class.java)
         val notesEntities: List<NotesEntity> = notesEntityBox.query().notNull(NotesEntity_.id).build().find()
         notesEntities.whatIfNotNull (whatIf = { return notesEntities })
         return null

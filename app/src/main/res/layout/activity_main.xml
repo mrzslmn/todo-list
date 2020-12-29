@@ -16,7 +16,9 @@
         android:orientation="vertical"
         tools:context=".pages.main.MainActivity">
 
-        <include layout="@layout/notes_list"/>
+        <include
+            android:id="@+id/include_main_content"
+            layout="@layout/notes_list"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_notes"

@@ -5,30 +5,55 @@
 
     <data>
         <variable
+            name="notes"
+            type="com.example.notes.model.Notes" />
+
+        <variable
             name="vmDetails"
             type="com.example.notes.pages.details.DetailsViewModel" />
 
     </data>
 
     <LinearLayout
+        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/box_inset_layout_padding"
-        tools:context=".pages.details.DetailsActivity"
-        tools:deviceIds="wear">
+        android:layout_margin="15dp"
+        android:orientation="vertical"
+        tools:context=".pages.details.DetailsViewModel">
 
-        <FrameLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="25dp"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/inner_frame_layout_padding"
-            app:boxedEdges="all">
+            android:layout_height="wrap_content"
+            android:text="@{vmDetails.title}"/>
 
-            <TextView
-                android:id="@+id/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hello_world" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Description"
+            android:textSize="25dp"/>
 
-        </FrameLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{vmDetails.description}"/>
+
+        <Button
+            android:paddingTop="10dp"
+            android:id="@+id/btn_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:onClick="onUpdate"/>
+
     </LinearLayout>
 </layout>
