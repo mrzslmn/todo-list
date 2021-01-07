@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setupView()
         setupListener()
-        setupRecyleView()
         setupObserver()
     }
 
@@ -45,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             lifecycleOwner = this@MainActivity
             vmNotes = mainViewModel
         }
+        setupRecyleView()
 
     }
 
@@ -93,8 +93,8 @@ class MainActivity : AppCompatActivity() {
 
     fun onDeleteClicked(notesEntity: NotesEntity) {
         mainViewModel.deleteNotes(notesEntity)
-        finish()
         startActivity(intent)
+        finish()
 
     }
 
