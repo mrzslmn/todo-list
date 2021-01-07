@@ -25,3 +25,17 @@ r
 Bapp/src/main/java/com/example/notes/persistence/dao/NotesDaoImp.kt,2/1/2190fdb3892c6f05d6e6d84670002688b6430d61
 X
 (gradle/wrapper/gradle-wrapper.properties,f/b/fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
+o
+?app/src/main/java/com/example/notes/pages/main/MainViewModel.kt,8/b/8b23c2a1abb91cc03d38319899e8797e466be4ff
+s
+Capp/src/main/java/com/example/notes/repository/NewTodoRepository.kt,1/3/13d074ff62eb3f63bc4819a7877223b27635ff73
+p
+@app/src/main/java/com/example/notes/repository/MainRepository.kt,e/f/ef2b74705c3195bf7101f6597e249d4399c62f42
+t
+Dapp/src/main/java/com/example/notes/pages/details/DetailsActivity.kt,3/f/3fee7bbf382a02cfe369a96546799fd5e8ea1e8f
+n
+>app/src/main/java/com/example/notes/pages/main/MainActivity.kt,1/a/1afe73a2885a87eafbc40776d738620241964640
+l
+<app/src/main/java/com/example/notes/component/MainAdapter.kt,8/5/8591da1c5f1c57fe2b2bf4d950f547bae2941e5c
+t
+Dapp/src/main/java/com/example/notes/component/MainPagelistAdapter.kt,f/4/f415ccb3c75221e9e5c0ffc6ee772112aa99a8f2

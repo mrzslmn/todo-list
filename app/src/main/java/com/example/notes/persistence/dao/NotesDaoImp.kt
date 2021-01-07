@@ -5,7 +5,6 @@ import com.example.notes.persistence.entity.NotesEntity
 import com.example.notes.persistence.entity.NotesEntity_
 import com.skydoves.whatif.whatIfNotNull
 import io.objectbox.Box
-import io.objectbox.android.ObjectBoxLiveData
 
 /**
  * Created by M.Reza Sulaiman on 23/12/20
@@ -24,19 +23,31 @@ class NotesDaoImp : NotesDao {
         notesEntityBox.remove(notesEntity)
     }
 
-    override fun findNotesById (id: Long): NotesEntity? {
+    override fun findNotesById(id: Long): NotesEntity? {
         notesEntityBox = ObjectBox.boxStore.boxFor(NotesEntity::class.java)
-        val notesEntities: List<NotesEntity> = notesEntityBox.query().equal(NotesEntity_.id, id).build().find()
-        notesEntities.whatIfNotNull (whatIf = { return notesEntities[0] })
+        val notesEntities: List<NotesEntity> =
+            notesEntityBox.query().equal(NotesEntity_.id, id).build().find()
+        notesEntities.whatIfNotNull(whatIf = { return notesEntities[0] })
         return null
 
     }
 
-    override fun findAllNotes() : List<NotesEntity>? {
+    override fun findAllNotes(): List<NotesEntity>? {
         notesEntityBox = ObjectBox.boxStore.boxFor(NotesEntity::class.java)
-        val notesEntities: List<NotesEntity> = notesEntityBox.query().notNull(NotesEntity_.id).build().find()
-        notesEntities.whatIfNotNull (whatIf = { return notesEntities })
+        val notesEntities: List<NotesEntity> =
+            notesEntityBox.query().notNull(NotesEntity_.id).build().find()
+        notesEntities.whatIfNotNull(whatIf = { return notesEntities })
         return null
     }
+
+    override fun pagingNotes(ofset: Long): List<NotesEntity>? {
+        notesEntityBox = ObjectBox.boxStore.boxFor(NotesEntity::class.java)
+        val notesEntities: List<NotesEntity> =
+            notesEntityBox.query().notNull(NotesEntity_.id).build().find(ofset, 2)
+        notesEntities.whatIfNotNull(whatIf = { return notesEntities })
+        return null
+    }
+
+
 
 }

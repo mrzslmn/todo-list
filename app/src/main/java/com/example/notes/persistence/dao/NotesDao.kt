@@ -1,7 +1,6 @@
 package com.example.notes.persistence.dao
 
 import com.example.notes.persistence.entity.NotesEntity
-import io.objectbox.android.ObjectBoxLiveData
 
 /**
  * Created by M.Reza Sulaiman on 23/12/20
@@ -12,4 +11,5 @@ interface NotesDao {
     fun delete(notesEntity: NotesEntity)
     fun findNotesById(id: Long): NotesEntity?
     fun findAllNotes(): List<NotesEntity>?
+    fun pagingNotes(ofset: Long): List<NotesEntity>?
 }

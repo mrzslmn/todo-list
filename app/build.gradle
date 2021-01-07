@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt' // Required for annotation processing.
 
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -56,7 +57,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0"
-    compileOnly 'com.google.android.wearable:wearable:2.6.0'
+
+    implementation "androidx.paging:paging-runtime:3.0.0-alpha07"
+
 
     kapt "androidx.room:room-compiler:$roomVersion"
 
@@ -70,6 +73,16 @@ dependencies {
     implementation 'com.google.android.play:core:1.7.2'
 
     implementation "com.github.skydoves:whatif:$whatIfVersion"
+
+    def paging_version = "2.1.2"
+
+//    implementation "androidx.paging:paging-runtime-ktx:$paging_version" // For Kotlin use paging-runtime-ktx
+
+    // alternatively - without Android dependencies for testing
+    testImplementation "androidx.paging:paging-common-ktx:$paging_version" // For Kotlin use paging-common-ktx
+
+    // optional - RxJava support
+    implementation "androidx.paging:paging-rxjava2-ktx:$paging_version" // For Kotlin use paging-rxjava2-ktx
 
 }
 apply plugin: 'io.objectbox' // Apply last.

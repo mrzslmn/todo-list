@@ -1,7 +1,6 @@
 package com.example.notes.repository
 
 import android.app.Application
-import androidx.lifecycle.LiveData
 import com.example.notes.persistence.dao.NotesDao
 import com.example.notes.persistence.entity.NotesEntity
 
@@ -13,6 +12,10 @@ class MainRepository constructor(
     private val notesDao: NotesDao
 ) : Application(){
 
+    companion object {
+        private const val NOTES_PAGE_SIZE = 10
+    }
+
     fun findAllNotes(): List<NotesEntity>? {
         return notesDao.findAllNotes()
     }
@@ -20,5 +23,10 @@ class MainRepository constructor(
     fun deleteNotes(notesEntity: NotesEntity) {
         notesDao.delete(notesEntity)
     }
+
+    fun pagingNotes(ofset: Long): List<NotesEntity>?{
+        return notesDao.pagingNotes(ofset)
+    }
+
 
 }
