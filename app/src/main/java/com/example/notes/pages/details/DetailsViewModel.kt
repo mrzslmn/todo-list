@@ -41,9 +41,4 @@ class DetailsViewModel : ViewModel() {
         _title.value = title
         _description.value = description
     }
-
-    fun validate() {
-        currentNotes.value = Notes(_title.value, _description.value)
-    }
-
 }

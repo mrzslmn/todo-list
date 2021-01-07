@@ -23,7 +23,6 @@ class LoadingFooterViewHolder(
         Timber.d("LoadingFooterViewHolder() footer")
     }
 
-
     companion object {
         fun create(parent: ViewGroup, retry: () -> Unit): LoadingFooterViewHolder {
             val view = LayoutInflater.from(parent.context)

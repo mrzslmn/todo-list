@@ -35,5 +35,4 @@ class NewTodoViewModel : ViewModel(){
         notesEntity.createdBy = "Reza"
         newTodoRepository.save(notesEntity)
     }
-
 }

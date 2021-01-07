@@ -1,9 +1,9 @@
 package com.example.notes.pages.newtodo
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.notes.R
 import com.example.notes.databinding.ActivityNewTodoBinding
@@ -18,7 +18,6 @@ class NewTodoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setupView()
         setupListener()
-
     }
 
     private fun setupView() {

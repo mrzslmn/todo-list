@@ -25,7 +25,6 @@ class DetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         retriveFromIntent()
         setupView()
         setupListener()
@@ -74,7 +73,6 @@ class DetailsActivity : AppCompatActivity() {
             navigateToMain()
         }
     }
-
 
     fun navigateToMain() {
         val intent = Intent(this, MainActivity::class.java)

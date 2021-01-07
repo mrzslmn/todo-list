@@ -12,9 +12,7 @@ class NewTodoRepository constructor(
     private val notesDao: NotesDao
 ) : Application()
  {
-
     fun save(notesEntity: NotesEntity) {
         return notesDao.save(notesEntity)
     }
-
 }

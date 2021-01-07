@@ -62,7 +62,6 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-
     }
 
     private fun setupListener() {
@@ -82,7 +81,6 @@ class MainActivity : AppCompatActivity() {
          footer = PhotosLoadStateAdapter { mainAdapter.retry()}
         )
         Timber.d("setupRecyleView() footer")
-
     }
 
     fun navigateToAddNotes() {
@@ -95,7 +93,6 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.deleteNotes(notesEntity)
         startActivity(intent)
         finish()
-
     }
 
     fun onDetailClicked(notesEntity: NotesEntity) {

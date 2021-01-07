@@ -12,14 +12,6 @@ class MainRepository constructor(
     private val notesDao: NotesDao
 ) : Application(){
 
-    companion object {
-        private const val NOTES_PAGE_SIZE = 10
-    }
-
-    fun findAllNotes(): List<NotesEntity>? {
-        return notesDao.findAllNotes()
-    }
-
     fun deleteNotes(notesEntity: NotesEntity) {
         notesDao.delete(notesEntity)
     }

@@ -21,7 +21,6 @@ class MainViewModel : ViewModel(){
         private const val NOTES_PAGE_SIZE = 5
     }
 
-
     init {
         mainRepository = MainRepository(NotesDaoImp())
 
@@ -38,10 +37,5 @@ class MainViewModel : ViewModel(){
         ),
         pagingSourceFactory = { NotesPagingSource(mainRepository)}
     ).flow.cachedIn(viewModelScope)
-
-
-
-
-
 
 }

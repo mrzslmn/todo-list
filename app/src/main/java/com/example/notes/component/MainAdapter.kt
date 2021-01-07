@@ -64,8 +64,5 @@ class MainAdapter(mainActivity: MainActivity) : PagingDataAdapter<NotesEntity, M
                 listener.onDeleteClicked(notesEntity)
             }
         }
-
     }
-
-
 }
