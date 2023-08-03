@@ -17,7 +17,23 @@ IMPLEMENTATION TEST - BACKEND (2)
 	LEFT JOIN sales_data ON sales_data.employees_id =  employees.employees_id GROUP BY employees.employees_id ORDER BY total_jual DESC
 	FETCH FIRST 5 ROWS ONLY;
 
-6.
+6. 	SELECT
+   	e.name,
+    	e.salary,
+	avg_salaries.avg_salary AS average_salary
+	FROM
+	employees AS e
+	JOIN (
+		SELECT
+			department,
+			AVG(salary) AS avg_salary
+		FROM
+			employees
+		GROUP BY
+			department
+	) AS avg_salaries ON e.department = avg_salaries.department
+	WHERE
+		e.salary > avg_salaries.avg_salary;
 
 
 7. 	SELECT employees.name, SUM(sales_data.sales) total_jual, RANK() OVER (ORDER BY SUM(sales_data.sales) DESC) ranking 
