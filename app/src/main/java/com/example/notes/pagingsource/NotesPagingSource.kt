@@ -26,7 +26,7 @@ class NotesPagingSource (
             val list = mainRepository.pagingNotes(position.toLong())
             list?.let { listNotes.addAll(it) }
             Timber.d("load() listNotes size: %s", listNotes.size)
-            delay(500)
+            delay(100)
             LoadResult.Page(
                 data = listNotes,
                 prevKey = if (position == NOTES_STARTING_PAGE_INDEX) null else position,

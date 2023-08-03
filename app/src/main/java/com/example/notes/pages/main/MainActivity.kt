@@ -2,7 +2,10 @@ package com.example.notes.pages.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -38,6 +41,12 @@ class MainActivity : AppCompatActivity() {
         setupObserver()
     }
 
+    override fun onResume() {
+        super.onResume()
+        Timber.d("onResume() refresh adapter")
+        mainAdapter.refresh()
+    }
+
     private fun setupView() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.apply {
@@ -45,7 +54,6 @@ class MainActivity : AppCompatActivity() {
             vmNotes = mainViewModel
         }
         setupRecyleView()
-
     }
 
     private fun setupObserver() {
@@ -90,8 +98,7 @@ class MainActivity : AppCompatActivity() {
 
 
     fun onDeleteClicked(notesEntity: NotesEntity) {
-        mainViewModel.deleteNotes(notesEntity)
-        mainAdapter.refresh()
+        showCustomDialog(notesEntity)
     }
 
     fun onDetailClicked(notesEntity: NotesEntity) {
@@ -100,8 +107,35 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("Desc", notesEntity.descriptions)
         intent.putExtra("Id", notesEntity.id)
         startActivity(intent)
-        finish()
     }
+
+    private fun showCustomDialog(notesEntity: NotesEntity) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_layout, null)
+
+        val dialogBuilder = AlertDialog.Builder(this)
+            .setView(dialogView)
+
+        val alertDialog = dialogBuilder.create()
+        alertDialog.show()
+
+        // Handle button clicks
+        val yesButton = dialogView.findViewById<Button>(R.id.btn_yes)
+        val noButton = dialogView.findViewById<Button>(R.id.btn_no)
+
+        yesButton.setOnClickListener {
+            // Add your logic for "Yes" button click here
+            mainViewModel.deleteNotes(notesEntity)
+            mainAdapter.refresh()
+            alertDialog.dismiss()
+        }
+
+        noButton.setOnClickListener {
+            // Add your logic for "No" button click here
+            alertDialog.dismiss()
+        }
+    }
+
+
 
 
 

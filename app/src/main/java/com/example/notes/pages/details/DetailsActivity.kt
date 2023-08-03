@@ -10,12 +10,13 @@ import com.example.notes.R
 import com.example.notes.databinding.ActivityDetailsBinding
 import com.example.notes.model.Notes
 import com.example.notes.pages.main.MainActivity
+import com.example.notes.utils.CommonUtils
 import timber.log.Timber
 
 class DetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailsBinding
-    val detailsViewModel: DetailsViewModel by viewModels()
+    private val detailsViewModel: DetailsViewModel by viewModels()
 
     companion object {
         var intentId: Long = 0
@@ -41,13 +42,22 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
 
-    fun setupObserve() {
+    private fun setupObserve() {
         val notes = Observer<Notes> {
             binding.etTitle.setText(it.titleNotes)
             binding.etDesc.setText(it.decsriptionNotes)
             Timber.d("setupObserve() title: %s description: %s", binding.etTitle.text, binding.etDesc.text)
         }
         detailsViewModel.currentNotes.observe(this, notes)
+
+        detailsViewModel.success.observe(this) {
+            CommonUtils.standardToast(this,"Data has been updated")
+            navigateToMain()
+        }
+
+        detailsViewModel.error.observe(this) {
+            CommonUtils.standardToast(this, it)
+        }
 
     }
 
@@ -65,18 +75,18 @@ class DetailsActivity : AppCompatActivity() {
 
     fun setupListener() {
         binding.btnUpdate.setOnClickListener {
-            detailsViewModel.updateNotes(
-                binding.etTitle.text.toString(),
-                binding.etDesc.text.toString(),
+            val title = binding.etTitle.text.toString()
+            val description = binding.etDesc.text.toString()
+            detailsViewModel.validateNote(
+                title,
+                description,
                 intentId
             )
-            navigateToMain()
+
         }
     }
 
-    fun navigateToMain() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+    private fun navigateToMain() {
         finish()
     }
 }

@@ -18,7 +18,7 @@ class MainViewModel : ViewModel(){
     var mainRepository: MainRepository = MainRepository(NotesDaoImp())
 
     companion object {
-        private const val NOTES_PAGE_SIZE = 5
+        private const val NOTES_PAGE_SIZE = 10
     }
 
     fun deleteNotes(notesEntity: NotesEntity) {

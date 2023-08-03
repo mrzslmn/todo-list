@@ -17,16 +17,35 @@ class NewTodoViewModel : ViewModel(){
     var newTodoRepository: NewTodoRepository
 
     val description: LiveData<String> get() = _description
-    val _description: MutableLiveData<String> = MutableLiveData()
-
     val title: LiveData<String> get() = _title
-    val _title: MutableLiveData<String> = MutableLiveData()
+    val error: LiveData<String> get() = _error
+    val success : LiveData<Boolean> get() = _success
+
+    private val _description = MutableLiveData<String>()
+    private val _title = MutableLiveData<String>()
+    private val _error = MutableLiveData<String>()
+    private val _success = MutableLiveData<Boolean>()
 
     init {
         newTodoRepository = NewTodoRepository(NotesDaoImp())
     }
 
-    fun saveToObjectBox(title: String, desciption: String) {
+    fun validateNote(title: String, description: String) {
+        if (title.isEmpty()) {
+            _error.postValue("Title cannot be empty")
+            return
+        }
+
+        if (description.isEmpty()) {
+            _error.postValue("Description cannot be empty")
+            return
+        }
+
+        saveToObjectBox(title, description)
+    }
+
+
+    private fun saveToObjectBox(title: String, desciption: String) {
         val notesEntity = NotesEntity()
         notesEntity.title = title
         notesEntity.descriptions = desciption
@@ -34,5 +53,6 @@ class NewTodoViewModel : ViewModel(){
         notesEntity.updatedDate = Date()
         notesEntity.createdBy = "Reza"
         newTodoRepository.save(notesEntity)
+        _success.postValue(true)
     }
 }
