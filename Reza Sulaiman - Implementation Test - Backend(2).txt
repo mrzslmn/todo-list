@@ -1,0 +1,45 @@
+IMPLEMENTATION TEST - BACKEND (2)
+
+1. 	SELECT * FROM employees;
+
+2. 	SELECT COUNT(*) AS ManagerCount
+	FROM employees
+	WHERE Title = 'Manager';
+
+
+3. 	FROM employees 
+	WHERE department IN ('Sales','Marketing');
+
+4. 	SELECT AVG(salary) FROM employees WHERE YEAR(joined_date) > YEAR(CURRENT_TIMESTAMP)-5;
+
+5. 	SELECT employees.employees_id, SUM(sales_data.sales) total_jual 
+	FROM employees
+	LEFT JOIN sales_data ON sales_data.employees_id =  employees.employees_id GROUP BY employees.employees_id ORDER BY total_jual DESC
+	FETCH FIRST 5 ROWS ONLY;
+
+6.
+
+
+7. 	SELECT employees.name, SUM(sales_data.sales) total_jual, RANK() OVER (ORDER BY SUM(sales_data.sales) DESC) ranking 
+	FROM employees 
+	LEFT JOIN sales_data ON sales_data.employees_id = employees.employees_id
+	GROUP BY employees.name;
+
+8.	CREATE PROCEDURE GetEmployeesByDepartment
+		@Department VARCHAR(100)
+	AS
+		BEGIN
+			SELECT 
+			name,
+			salary
+			FROM employees
+				WHERE Department = @Department;
+
+			SELECT 
+				SUM(Salary) AS TotalSalary
+			FROM employees
+			WHERE Department = @Department;
+	END;
+
+
+
