@@ -15,15 +15,10 @@ import com.example.notes.repository.MainRepository
  * Jepara, Indonesia.
  */
 class MainViewModel : ViewModel(){
-    var mainRepository: MainRepository
+    var mainRepository: MainRepository = MainRepository(NotesDaoImp())
 
     companion object {
         private const val NOTES_PAGE_SIZE = 5
-    }
-
-    init {
-        mainRepository = MainRepository(NotesDaoImp())
-
     }
 
     fun deleteNotes(notesEntity: NotesEntity) {

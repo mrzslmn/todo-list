@@ -91,8 +91,7 @@ class MainActivity : AppCompatActivity() {
 
     fun onDeleteClicked(notesEntity: NotesEntity) {
         mainViewModel.deleteNotes(notesEntity)
-        startActivity(intent)
-        finish()
+        mainAdapter.refresh()
     }
 
     fun onDetailClicked(notesEntity: NotesEntity) {

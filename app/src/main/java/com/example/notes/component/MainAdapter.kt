@@ -50,11 +50,13 @@ class MainAdapter(mainActivity: MainActivity) : PagingDataAdapter<NotesEntity, M
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var title: TextView = itemView.findViewById(R.id.tv_title)
+        private var description: TextView = itemView.findViewById(R.id.tv_description)
         private var delete: ImageView = itemView.findViewById(R.id.iv_delete_item)
         private var cardview: CardView = itemView.findViewById(R.id.card_list_notes)
 
         fun bindItem(notesEntity: NotesEntity, listener: MainActivity) {
             title.text = notesEntity.title
+            description.text = notesEntity.descriptions
 
             cardview.setOnClickListener {
                 listener.onDetailClicked(notesEntity)
